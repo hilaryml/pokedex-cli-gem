@@ -20,4 +20,30 @@ class Scraper
 
 	end
 
+	def scrape_pokedex_entry(entry_url)
+
+		entry = Nokogiri::HTML(open(entry_url))
+
+		entry_hash = {}
+
+		entry.css().each {|category|
+			case category
+
+			when "Physiology"
+				entry_hash[:physiology] = 
+			when "Natural Abilities"
+				entry_hash[:natural_abilities] =
+			when "Behaviour"
+				entry_hash[:behaviour] = 
+			when "Habitat"
+				entry_hash[:habitat] =
+			when "Evolution"
+				entry_hash[:evolution] =
+			end
+		}
+		entry_hash
+	end
+
 end
+
+Scraper.new.scrape_pokemon_index
