@@ -6,12 +6,14 @@ class Pokedex::CLI
 
 	def call
 		puts "Gen 1 Pokemon"
+		puts "---------------"
 		list_pokemon
 		menu
 		bye
 	end
 
 	def list_pokemon
+		#need to figure out formatting
 		puts "1. Bulbasaur - Grass - Poison
 2. Ivysaur - Grass - Poison
 3. Venosaur - Grass - Poison
@@ -51,3 +53,4 @@ end
 #to-do: use nokogiri and open-uri to scrape pages for attributes and save in array of hashes
 #each hash will represent the info for a pokemon
 #Will only be printing values for main attributes, keys and values for other
+#figure out supplying each pokemon's entry_url to the scraper method

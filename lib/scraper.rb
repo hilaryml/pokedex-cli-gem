@@ -8,26 +8,26 @@ class Scraper
 
 		doc = Nokogiri::HTML(open("http://pokemon.wikia.com/wiki/Category:Generation_I_Pok%C3%A9mon"))
 		#binding.pry
-		#all_pokemon_array = []
-		#count = 0
-		#doc.css("div.lightbox-caption a").each {|pokemon|
+		all_pokemon_array = []
+		count = 0
+		doc.css("div.lightbox-caption a").each {|pokemon|
 			
-		#	each_pokemon_hash = {number: count + 1,
-		#	name: pokemon.attribute("title").text,
-		#	type: pokemon.css("span").text}
-		#	entry_url: "http://pokemon.wikia.com#{pokemon.attribute("href").text}"
-		#	}
-		#	all_pokemon_array << each_pokemon_hash
-		#	count += 1
-		#}
-		#all_pokemon_array
+			each_pokemon_hash = {number: count + 1,
+			name: pokemon.attribute("title").text,
+			type: pokemon.css("span").text}
+			entry_url: "http://pokemon.wikia.com#{pokemon.attribute("href").text}"
+			}
+			all_pokemon_array << each_pokemon_hash
+			count += 1
+		}
+		all_pokemon_array
 
 	end
 
 	def scrape_pokedex_entry(entry_url)
 
 		entry = Nokogiri::HTML(open(entry_url))
-		binding.pry
+		#binding.pry
 		entry_hash = {}
 		
 		entry.css("h3").each_with_index {|section, index|
@@ -52,11 +52,6 @@ class Scraper
 end
 
 #Scraper.new.scrape_pokemon_index
-Scraper.new.scrape_pokedex_entry("http://pokemon.wikia.com/wiki/Bulbasaur")
+#Scraper.new.scrape_pokedex_entry("http://pokemon.wikia.com/wiki/Bulbasaur")
 
-#entry.css("h3").text printed the names of each h3 heading
-#entry.css("h3~p").text this selected all of the text under the h2 headers
-#key-value pairs? 
-
-#remember to weed out unnecessary categories... case statement?
 
