@@ -28,14 +28,16 @@ class Pokedex::CLI
 	end
 
 	def menu
-		puts "Which Pokemon would you like to know more about? (number) Type 'exit' to leave the program."
+		#puts "Which Pokemon would you like to know more about? (number) Type 'exit' to leave the program."
 		input = nil
 		while input != "exit"
+			puts "Which Pokemon would you like to know more about? (number) Type 'exit' to leave the program."
 			input = gets.strip.downcase
 		
-			Pokedex::Pokemon.all.each {|pokemon|
-			if input.to_i < 152
-				Pokedex::Pokemon.all[input.to_i - 1]
+			if input == "list"
+				list_pokemon 
+			elsif input.to_i < 152
+				pokemon = Pokedex::Pokemon.all[input.to_i - 1]
 				puts "POKEDEX ENTRY FOR #{pokemon.name.upcase}"
 				puts "---------------------------------"
 				puts "PHYSIOLOGY: #{pokemon.physiology}"
@@ -43,10 +45,7 @@ class Pokedex::CLI
 				puts "BEHAVIOUR: #{pokemon.behavior}"
 				puts "HABITAT: #{pokemon.habitat}"
 				puts "---------------------------------"
-			elsif input == "list"
-				list_pokemon 
 			end
-			}
 		end
 	end
 
