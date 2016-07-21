@@ -20,7 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Type the following into your terminal:
+
+$ pokedex
 
 ## Development
 

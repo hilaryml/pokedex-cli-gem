@@ -3,7 +3,7 @@ class Pokedex::Scraper
 	def scrape_pokemon_index
 
 		doc = Nokogiri::HTML(open("http://pokemon.wikia.com/wiki/Category:Generation_I_Pok%C3%A9mon"))
-		#binding.pry
+		
 		all_pokemon_array = []
 		count = 0
 		each_pokemon_hash = {}
@@ -25,7 +25,7 @@ class Pokedex::Scraper
 	def scrape_pokedex_entry(entry_url)
 
 		entry = Nokogiri::HTML(open(entry_url))
-		#binding.pry
+		
 		entry_hash = {}
 		
 		entry.css("h3").each_with_index {|section, index|
@@ -48,8 +48,5 @@ class Pokedex::Scraper
 	end
 
 end
-
-#Pokedex::Scraper.new.scrape_pokemon_index
-#Pokedex::Scraper.new.scrape_pokedex_entry("http://pokemon.wikia.com/wiki/Bulbasaur")
 
 

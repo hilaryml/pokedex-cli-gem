@@ -28,7 +28,6 @@ class Pokedex::CLI
 	end
 
 	def menu
-		#puts "Which Pokemon would you like to know more about? (number) Type 'exit' to leave the program."
 		input = nil
 		while input != "exit"
 			puts "Which Pokemon would you like to know more about? (number) Type 'exit' to leave the program."
