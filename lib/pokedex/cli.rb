@@ -1,12 +1,12 @@
-require_relative "../pokedex/version.rb"
-require_relative "../pokedex/pokemon.rb"
+require_relative "../lib/version.rb"
+require_relative "../lib/pokemon.rb"
 require 'nokogiri'
 
 class Pokedex::CLI
 
 	def call
-		puts "GEN 1 POKEMON"
-		puts "----------------------------"
+		create_pokemon
+		add_attributes_to_pokemon
 		list_pokemon
 		menu
 		bye
@@ -26,8 +26,11 @@ class Pokedex::CLI
 
 	def list_pokemon
 
-		Pokemon.all.each {|pokemon| puts "#{pokemon.number} - #{pokemon.name.upcase} - #{pokemon.type}" }
-		
+		Pokemon.all.each {|pokemon| 
+			puts "GEN 1 POKEMON"
+			puts "----------------------------"
+			puts "#{pokemon.number} - #{pokemon.name.upcase} - #{pokemon.type}" 
+		}
 		puts "----------------------------"
 
 		# GEN 1 POKEMON
@@ -45,20 +48,26 @@ class Pokedex::CLI
 			puts "Type the number of the Pokemon that you would like to know more about. Type 'list' to see the Pokemon again. Type 'exit' to leave the program."
 			input = gets.strip.downcase
 		
+			
+			#have to iterate through array of pokemon hashes, and find the one that has a num
+			#matching the input OR take the hash at input -1 index of array - then print out entry values.
+			Pokemon.all.each {|pokemon|
 			case input
-			when "1"
-				puts "Bulbasaur info"
-			when "2"
-				puts "Ivysaur info"
-			when "3"
-				puts "Venosaur info"
-			when "4"
-				puts "Charazard info"
+			when Pokemon.all[input - 1]
+				puts "Pokedex Entry for #{pokemon.name}"
+				puts "---------------------------------"
+				puts "Physiology: #{pokemon.physiology}"
+				puts "Biology: #{pokemon.biology}"
+				puts "Natural Abilities: #{pokemon.natural_abilities}"
+				puts "Behavior: #{pokemon.behavior}"
+				puts "Habitat: #{pokemon.habitat}"
+				puts "---------------------------------" 
 			when "list"
 				list_pokemon
 			else
 				puts "Invalid entry. Try again."
 			end
+			}
 		end
 	end
 
@@ -67,8 +76,3 @@ class Pokedex::CLI
 	end
 	
 end
-
-#to-do: use nokogiri and open-uri to scrape pages for attributes and save in array of hashes
-#each hash will represent the info for a pokemon
-#Will only be printing values for main attributes, keys and values for other
-#figure out supplying each pokemon's entry_url to the scraper method
