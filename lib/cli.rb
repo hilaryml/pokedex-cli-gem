@@ -5,19 +5,37 @@ require 'nokogiri'
 class Pokedex::CLI
 
 	def call
-		puts "Gen 1 Pokemon"
-		puts "---------------"
+		puts "GEN 1 POKEMON"
+		puts "----------------------------"
 		list_pokemon
 		menu
 		bye
 	end
 
+	def create_pokemon
+		pokemon_array = Scraper.scrape_pokemon_index
+		Pokemon.create_from_collection(pokemon_array)
+	end
+
+	def add_attributes_to_pokemon
+		Pokemon.all.each {|pokemon|
+			attributes = Scraper.scrape_pokedex_entry(pokemon.entry_url)
+			pokemon.add_pokemon_attributes(attributes)
+		}
+	end
+
 	def list_pokemon
-		#need to figure out formatting
-		puts "1. Bulbasaur - Grass - Poison
-2. Ivysaur - Grass - Poison
-3. Venosaur - Grass - Poison
-4. Charazard - Fire"
+
+		Pokemon.all.each {|pokemon| puts "#{pokemon.number} - #{pokemon.name.upcase} - #{pokemon.type}" }
+		
+		puts "----------------------------"
+
+		# GEN 1 POKEMON
+		#----------------------------
+		#1 - BULBASAUR - Grass Poison
+		#2 - IVYSAUR - Grass Poison
+		#3 - VENOSAUR - Grass Poison
+
 	end
 
 	def menu

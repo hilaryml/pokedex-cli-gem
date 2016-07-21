@@ -4,12 +4,12 @@ class Pokemon
 
 	@@all = []
 
-	def initialize(each_pokemon_hash)
+	def initialize(pokemon_hash)
 		each_pokemon_hash.each {|key, value| self.send(("#{key}="), value)}
 		@@all << self
 	end
 
-	def self.create_from_collection(all_pokemon_array)
+	def self.create_from_collection(pokemon_array)
 		all_pokemon_array.each{|hash| Pokemon.new(hash)}
 	end
 
