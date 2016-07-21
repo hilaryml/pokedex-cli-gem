@@ -31,23 +31,20 @@ class Pokedex::CLI
 		puts "Which Pokemon would you like to know more about? (number) Type 'exit' to leave the program."
 		input = nil
 		while input != "exit"
-			puts "Type the number of the Pokemon that you would like to know more about. Type 'list' to see the Pokemon again. Type 'exit' to leave the program."
 			input = gets.strip.downcase
 		
 			Pokedex::Pokemon.all.each {|pokemon|
-			case input
-		
-			when "list"
-				list_pokemon
-			when Pokedex::Pokemon.all[input.to_i - 1]
-				puts "Pokedex Entry for #{pokemon.name}"
+			if input.to_i < 152
+				Pokedex::Pokemon.all[input.to_i - 1]
+				puts "POKEDEX ENTRY FOR #{pokemon.name.upcase}"
 				puts "---------------------------------"
-				puts "Physiology: #{pokemon.physiology}"
-				puts "Biology: #{pokemon.biology}"
-				puts "Natural Abilities: #{pokemon.natural_abilities}"
-				puts "Behavior: #{pokemon.behavior}"
-				puts "Habitat: #{pokemon.habitat}"
-				puts "---------------------------------" 
+				puts "PHYSIOLOGY: #{pokemon.physiology}"
+				puts "NATURAL ABILITIES: #{pokemon.natural_abilities}"
+				puts "BEHAVIOUR: #{pokemon.behavior}"
+				puts "HABITAT: #{pokemon.habitat}"
+				puts "---------------------------------"
+			elsif input == "list"
+				list_pokemon 
 			end
 			}
 		end
