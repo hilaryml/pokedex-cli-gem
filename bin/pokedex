@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require './lib/cli'
+require_relative '../lib/pokedex'
 
 Pokedex::CLI.new.call

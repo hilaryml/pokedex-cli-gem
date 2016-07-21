@@ -6,13 +6,15 @@ class Pokedex::Scraper
 		#binding.pry
 		all_pokemon_array = []
 		count = 0
-		doc.css("div.lightbox-caption a").each {|pokemon|
+		each_pokemon_hash = {}
+		doc.css("div.lightbox-caption").each {|pokemon|
 			
 			each_pokemon_hash = {number: count + 1,
-			name: pokemon.attribute("title").text,
-			type: pokemon.css("span").text}
-			entry_url: "http://pokemon.wikia.com#{pokemon.attribute("href").text}"
+			name: pokemon.css("a").attribute("title").text,
+			type: pokemon.css("a span").text,
+			entry_url: "http://pokemon.wikia.com#{pokemon.css("a").attribute("href").text}"
 			}
+			
 			all_pokemon_array << each_pokemon_hash
 			count += 1
 		}
@@ -47,7 +49,7 @@ class Pokedex::Scraper
 
 end
 
-#Scraper.new.scrape_pokemon_index
-#Scraper.new.scrape_pokedex_entry("http://pokemon.wikia.com/wiki/Bulbasaur")
+#Pokedex::Scraper.new.scrape_pokemon_index
+#Pokedex::Scraper.new.scrape_pokedex_entry("http://pokemon.wikia.com/wiki/Bulbasaur")
 
 
