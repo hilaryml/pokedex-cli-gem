@@ -1,4 +1,4 @@
-class Pokemon
+class Pokedex::Pokemon
 
 	attr_accessor :number, :name, :type, :entry_url, :physiology, :natural_abilities, :behavior, :habitat
 

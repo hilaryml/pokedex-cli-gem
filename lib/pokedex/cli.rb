@@ -1,7 +1,3 @@
-require_relative "../lib/version.rb"
-require_relative "../lib/pokemon.rb"
-require 'nokogiri'
-
 class Pokedex::CLI
 
 	def call

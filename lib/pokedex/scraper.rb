@@ -1,8 +1,4 @@
-require 'nokogiri'
-require 'open-uri'
-require 'pry'
-
-class Scraper
+class Pokedex::Scraper
 
 	def scrape_pokemon_index
 
